@@ -1,15 +1,17 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 
-static class Program
-{
-    [STAThread]
-    static void Main(string[] args)
+namespace ReproGame {
+    static class Program
     {
-        using (Game g = new Game())
+        [STAThread]
+        static void Main(string[] args)
         {
-            new GraphicsDeviceManager(g);
-            g.Run();
+            using (Game g = new ReproGame())
+            {
+                new GraphicsDeviceManager(g);
+                g.Run();
+            }
         }
     }
 }
