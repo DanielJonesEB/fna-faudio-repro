@@ -10,6 +10,7 @@ namespace ReproGame
         private WaveBank waveBank;
         private Cue a;
         private Cue b;
+        private int frames = 0;
 
         protected override void Initialize()
         {
@@ -24,6 +25,7 @@ namespace ReproGame
         protected override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+            audioEngine.Update();
 
             if(! (a.IsPlaying || b.IsPlaying))
             {
@@ -39,6 +41,13 @@ namespace ReproGame
                     Console.Out.WriteLine("a.IsStopped was false after pausing it and playing another cue, so presumably this bug is fixed :)");
                 }
             }
+
+            if(frames > 0 && a.IsStopping)
+            {
+                throw new Exception("a.IsStopping is true, even after updating the audio engine");
+            }
+
+            frames++;
         }
     }
 }
